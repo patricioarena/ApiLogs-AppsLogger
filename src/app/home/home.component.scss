@@ -173,7 +173,7 @@ section::after {
   background: #ecf0f5;
 }
 
-.contenedor {
+.tablaContainer {
   display: flex;
   justify-content: center;
 }
@@ -188,18 +188,21 @@ section::after {
   width: 7% !important;
   border-right: 1px solid currentColor;
   text-align: center;
+  padding: 5px;
 }
 
 .mat-column-level {
   width: 5% !important;
   border-right: 1px solid currentColor;
   text-align: center;
+  padding: 5px;
 }
 
 .mat-column-renderedMessage {
   width: 20% !important;
   border-right: 1px solid currentColor;
   text-align: center;
+  padding: 5px;
 }
 
 .mat-column-properties {
@@ -219,4 +222,15 @@ section::after {
   border: 1px solid grey;
 }
 
+::ng-deep .mat-form-field-label{
+  font-size: medium !important;
+  color:#000 !important;
+}
 
+::ng-deep .mat-form-field-underline .mat-form-field-ripple{
+  background-color:#000 !important;
+}
+
+::ng-deep .mat-form-field-underline{
+  background-color: rgba(128, 128, 128, 0.631) !important;
+}
