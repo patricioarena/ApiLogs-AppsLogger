@@ -173,34 +173,46 @@ section::after {
   background: #ecf0f5;
 }
 
-.tablaContainer {
+.justifyCenter {
   display: flex;
   justify-content: center;
 }
 
+.test {
+  display: flex;
+  flex-direction: column;
+}
+
 .mat-column-id {
   width: 3.5% !important;
-  border-right: 1px solid currentColor;
+  border-right: 1px solid rgb(224 224 224);
   text-align: justify;
 }
 
 .mat-column-timestamp {
   width: 7% !important;
-  border-right: 1px solid currentColor;
+  border-right: 1px solid rgb(224 224 224);
   text-align: center;
   padding: 5px;
 }
 
 .mat-column-level {
   width: 5% !important;
-  border-right: 1px solid currentColor;
+  border-right: 1px solid rgb(224 224 224);
+  text-align: center;
+  padding: 5px;
+}
+
+.mat-column-valor {
+  width: 5% !important;
+  border-right: 1px solid rgb(224 224 224);
   text-align: center;
   padding: 5px;
 }
 
 .mat-column-renderedMessage {
   width: 20% !important;
-  border-right: 1px solid currentColor;
+  border-right: 1px solid rgb(224 224 224);
   text-align: center;
   padding: 5px;
 }
@@ -208,7 +220,7 @@ section::after {
 .mat-column-properties {
   word-break: break-all;
   text-align: justify;
-  border-right: 1px solid currentColor;
+  border-right: 1px solid rgb(224 224 224);
   padding: 5px;
 }
 
@@ -219,7 +231,7 @@ section::after {
 .mat-button {
   margin-top: 50%;
   margin-bottom: 50%;
-  border: 1px solid grey;
+  border: 1px solid grey!important;
 }
 
 ::ng-deep .mat-form-field-label{
@@ -233,4 +245,53 @@ section::after {
 
 ::ng-deep .mat-form-field-underline{
   background-color: rgba(128, 128, 128, 0.631) !important;
+}
+
+tr.mat-header-row {
+  background-color:#888a8b8a!important;
+}
+
+.mat-header-cell, mat-cell {
+  color:#000!important;
+  font-size: small;
+}
+
+.mat-sort-header-arrow{
+  color:#000!important;
+}
+
+
+.Trace{
+  text-shadow: 1px 1px 2px black, 0 0 1em rgb(71, 71, 71), 0 0 0.2em black;
+  color:greenyellow!important;
+}
+
+.Debug{
+  text-shadow: 1px 1px 2px black, 0 0 1em rgb(71, 71, 71), 0 0 0.2em black;
+  color:violet!important;
+}
+
+.Information{
+  text-shadow: 1px 1px 2px black, 0 0 1em rgb(71, 71, 71), 0 0 0.2em black;
+  color:skyblue!important;
+}
+
+.Warning{
+  text-shadow: 1px 1px 2px black, 0 0 1em rgb(71, 71, 71), 0 0 0.2em black;
+  color:yellow!important;
+}
+
+.Error{
+  text-shadow: 1px 1px 2px black, 0 0 1em rgb(71, 71, 71), 0 0 0.2em black;
+  color:red!important;
+}
+
+.Fatal{
+  text-shadow: 1px 1px 2px black, 0 0 1em rgb(71, 71, 71), 0 0 0.2em black;
+  color:orangered!important;
+}
+
+.None{
+  text-shadow: 1px 1px 2px black, 0 0 1em rgb(71, 71, 71), 0 0 0.2em black;
+  color:white!important;
 }

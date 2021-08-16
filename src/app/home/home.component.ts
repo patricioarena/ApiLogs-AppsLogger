@@ -15,15 +15,15 @@ import { ModalService } from '../service/modal.service';
 
 export class HomeComponent implements OnInit {
 
-  title: String | undefined;
-  isEnabled = false;
-
+  public title: String | undefined;
+  public isEnabledBtn = false;
+  public isEnabledFullTable = false;
   public displayedColumns = ['id', 'timestamp', 'level', 'renderedMessage', 'properties', 'exception'];
+  public displayedColumnsNivel = ['valor','level', 'descripcion'];
   public dataSource = new MatTableDataSource<registro>();
 
   @ViewChild(MatSort) sort: MatSort = new MatSort();
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     // public spinner: NgxSpinnerService,
@@ -37,40 +37,43 @@ export class HomeComponent implements OnInit {
 
     let res = [
       {
-        "id": 1,
-        "timestamp": "2021-08-12T16:03:27",
-        "level": "Error",
-        "exception": "System.ArgumentException: ArgumentException (Parameter 'Error Custom')",
-        "renderedMessage": "Solo estoy probando el mensaje personalizado ...",
-        "properties": "{\"SourceContext\":\"ApiBackend.Controllers.CustomController\",\"ActionId\":\"9bbc54c7-bac1-415c-aaa9-dad7157f2bb0\",\"ActionName\":\"ApiBackend.Controllers.TestLoggerController.Get (ApiBackend)\",\"RequestId\":\"800000f4-0007-ff00-b63f-84710c7967bb\",\"RequestPath\":\"/abogados/ApiBackend/api/TestLogger/error/Solo%20estoy%20probando%20el%20mensaje%20personalizado%20...\",\"SpanId\":\"|6f9e8a95-400f38cc5430008a.\",\"TraceId\":\"6f9e8a95-400f38cc5430008a\",\"ParentId\":\"\"}"
+        "valor": 0,
+        "level": "Trace",
+        "descripcion": "Contiene los mensajes más detallados. Estos mensajes pueden contener datos confidenciales de la aplicación. Estos mensajes están deshabilitados de forma predeterminada y no deben habilitarse en producción."
       },
       {
-        "id": 2,
-        "timestamp": "2021-08-12T16:03:46",
-        "level": "Error",
-        "exception": "System.ArgumentException: ArgumentException (Parameter 'Error Custom con nombre de usuario')\r\n   at ApiBackend.Controllers.TestLoggerController.Error() in D:\\Codigo\\GestionItegralDeJuicios\\Abogados\\ApiBackend\\Controllers\\TestLogger.cs:line 43",
-        "renderedMessage": "FISCALIA\\parena",
-        "properties": "{\"SourceContext\":\"ApiBackend.Controllers.CustomController\",\"ActionId\":\"05a9ed17-977a-4009-9e7a-4eac6d8419ae\",\"ActionName\":\"ApiBackend.Controllers.TestLoggerController.Error (ApiBackend)\",\"RequestId\":\"800000f6-0007-ff00-b63f-84710c7967bb\",\"RequestPath\":\"/abogados/ApiBackend/api/TestLogger/error\",\"SpanId\":\"|6f9e8a96-400f38cc5430008a.\",\"TraceId\":\"6f9e8a96-400f38cc5430008a\",\"ParentId\":\"\"}"
+        "valor": 1,
+        "level": "Debug",
+        "descripcion": "Para depuración y desarrollo. Úselo con precaución en la producción debido al alto volumen."
       },
       {
-        "id": 3,
-        "timestamp": "2021-08-12T16:13:41",
+        "valor": 2,
+        "level": "Information",
+        "descripcion": "Realiza un seguimiento del flujo general de la aplicación. Puede tener valor a largo plazo."
+      },
+      {
+        "valor": 3,
         "level": "Warning",
-        "exception": "",
-        "renderedMessage": "Using an in-memory repository. Keys will not be persisted to storage.",
-        "properties": "{\"EventId\":{\"Id\":50},\"SourceContext\":\"Microsoft.AspNetCore.DataProtection.Repositories.EphemeralXmlRepository\"}"
+        "descripcion": "Para eventos anormales o inesperados. Por lo general, incluye errores o condiciones que no hacen que la aplicación falle."
       },
       {
-        "id": 4,
-        "timestamp": "2021-08-12T16:13:41",
-        "level": "Warning",
-        "exception": "",
-        "renderedMessage": "Neither user profile nor HKLM registry available. Using an ephemeral key repository. Protected data will be unavailable when application exits.",
-        "properties": "{\"EventId\":{\"Id\":59},\"SourceContext\":\"Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager\"}"
+        "valor": 4,
+        "level": "Error",
+        "descripcion": "Para errores y excepciones que no se pueden manejar. Estos mensajes indican una falla en la operación o solicitud actual, no una falla en toda la aplicación."
+      },
+      {
+        "valor": 5,
+        "level": "Fatal",
+        "descripcion": "Para fallas que requieran atención inmediata. Ejemplos: escenarios de pérdida de datos, falta de espacio en disco."
+      },
+      {
+        "valor": 6,
+        "level": "None",
+        "descripcion": "Especifica que una categoría de registro no debe escribir ningún mensaje."
       }
     ];
 
-    this.dataSource.data = res as registro[];
+    this.dataSource.data = res as any[];
 
   }
 
@@ -79,8 +82,7 @@ export class HomeComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  public test(params:any) {
-    console.log(params);
+  public openModal(params:any) {
     this.modalService.openModal('Excepción',params);
   }
 
@@ -118,7 +120,7 @@ export class HomeComponent implements OnInit {
       {
         "id": 3,
         "timestamp": "2021-08-12T16:13:41",
-        "level": "Warning",
+        "level": "Fatal",
         "exception": "",
         "renderedMessage": "Using an in-memory repository. Keys will not be persisted to storage.",
         "properties": "{\"EventId\":{\"Id\":50},\"SourceContext\":\"Microsoft.AspNetCore.DataProtection.Repositories.EphemeralXmlRepository\"}"
@@ -503,6 +505,7 @@ export class HomeComponent implements OnInit {
     ];
 
     this.dataSource.data = res as registro[];
+    this.isEnabledFullTable = true;
 
   }
 }
