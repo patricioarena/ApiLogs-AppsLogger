@@ -4,7 +4,7 @@ import { TitleService } from '../service/title.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { registro } from '../models/model';
+import { Registro } from '../models/registro';
 import { ModalService } from '../service/modal.service';
 
 @Component({
@@ -20,7 +20,45 @@ export class HomeComponent implements OnInit {
   public isEnabledFullTable = false;
   public displayedColumns = ['id', 'timestamp', 'level', 'renderedMessage', 'properties', 'exception'];
   public displayedColumnsNivel = ['valor','level', 'descripcion'];
-  public dataSource = new MatTableDataSource<registro>();
+  public dataSource = new MatTableDataSource<Registro>();
+  public dataDefaults = [
+    {
+      "valor": 0,
+      "level": "Trace",
+      "descripcion": "Contiene los mensajes más detallados. Estos mensajes pueden contener datos confidenciales de la aplicación. Estos mensajes están deshabilitados de forma predeterminada y no deben habilitarse en producción."
+    },
+    {
+      "valor": 1,
+      "level": "Debug",
+      "descripcion": "Para depuración y desarrollo. Úselo con precaución en la producción debido al alto volumen."
+    },
+    {
+      "valor": 2,
+      "level": "Information",
+      "descripcion": "Realiza un seguimiento del flujo general de la aplicación. Puede tener valor a largo plazo."
+    },
+    {
+      "valor": 3,
+      "level": "Warning",
+      "descripcion": "Para eventos anormales o inesperados. Por lo general, incluye errores o condiciones que no hacen que la aplicación falle."
+    },
+    {
+      "valor": 4,
+      "level": "Error",
+      "descripcion": "Para errores y excepciones que no se pueden manejar. Estos mensajes indican una falla en la operación o solicitud actual, no una falla en toda la aplicación."
+    },
+    {
+      "valor": 5,
+      "level": "Fatal",
+      "descripcion": "Para fallas que requieran atención inmediata. Ejemplos: escenarios de pérdida de datos, falta de espacio en disco."
+    },
+    {
+      "valor": 6,
+      "level": "None",
+      "descripcion": "Especifica que una categoría de registro no debe escribir ningún mensaje."
+    }
+  ];
+
 
   @ViewChild(MatSort) sort: MatSort = new MatSort();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -34,47 +72,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.title = this.titleServive.APP_TITLE;
-
-    let res = [
-      {
-        "valor": 0,
-        "level": "Trace",
-        "descripcion": "Contiene los mensajes más detallados. Estos mensajes pueden contener datos confidenciales de la aplicación. Estos mensajes están deshabilitados de forma predeterminada y no deben habilitarse en producción."
-      },
-      {
-        "valor": 1,
-        "level": "Debug",
-        "descripcion": "Para depuración y desarrollo. Úselo con precaución en la producción debido al alto volumen."
-      },
-      {
-        "valor": 2,
-        "level": "Information",
-        "descripcion": "Realiza un seguimiento del flujo general de la aplicación. Puede tener valor a largo plazo."
-      },
-      {
-        "valor": 3,
-        "level": "Warning",
-        "descripcion": "Para eventos anormales o inesperados. Por lo general, incluye errores o condiciones que no hacen que la aplicación falle."
-      },
-      {
-        "valor": 4,
-        "level": "Error",
-        "descripcion": "Para errores y excepciones que no se pueden manejar. Estos mensajes indican una falla en la operación o solicitud actual, no una falla en toda la aplicación."
-      },
-      {
-        "valor": 5,
-        "level": "Fatal",
-        "descripcion": "Para fallas que requieran atención inmediata. Ejemplos: escenarios de pérdida de datos, falta de espacio en disco."
-      },
-      {
-        "valor": 6,
-        "level": "None",
-        "descripcion": "Especifica que una categoría de registro no debe escribir ningún mensaje."
-      }
-    ];
-
-    this.dataSource.data = res as any[];
-
+    this.dataSource.data = this.dataDefaults as any[];
   }
 
   ngAfterViewInit(): void {
@@ -82,8 +80,9 @@ export class HomeComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  public openModal(params:any) {
-    this.modalService.openModal('Excepción',params);
+  public openModal(excepción:string) {
+    console.log(excepción);
+    this.modalService.openModal('Excepción',excepción);
   }
 
   public doFilter = (value: string) => {
@@ -504,9 +503,15 @@ export class HomeComponent implements OnInit {
 
     ];
 
-    this.dataSource.data = res as registro[];
+    this.dataSource.data = res as Registro[];
     this.isEnabledFullTable = true;
 
   }
+
+  public loadDataDefaults() {
+    this.dataSource.data = this.dataDefaults as any[];
+    this.isEnabledFullTable = false;
+  }
+
 }
 
