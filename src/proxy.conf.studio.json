@@ -1,0 +1,8 @@
+{
+  "/api/*": {
+    "target": "http://localhost/abogados/ApiFrontend2",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": false
+  }
+}

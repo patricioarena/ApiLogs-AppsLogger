@@ -1,4 +1,6 @@
 export const environment = {
+  API_URL_MICARTERA: 'https://apps.fepba.gov.ar/micartera/api/',
   production: true,
-  API_URL: 'https://api.'
+  debug: false,
+  uat: false,
 };

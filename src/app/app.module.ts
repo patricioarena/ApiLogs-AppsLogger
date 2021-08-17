@@ -11,6 +11,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module'
 import { ModalModule } from "ngx-bootstrap/modal";
 import { ModalService } from './service/modal.service';
+import { LogsService } from './service/logs.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { ModalService } from './service/modal.service';
     ModalComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -29,7 +32,8 @@ import { ModalService } from './service/modal.service';
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
-    ModalService
+    ModalService,
+    LogsService
   ],
   bootstrap: [AppComponent],
   entryComponents: [ModalComponent]

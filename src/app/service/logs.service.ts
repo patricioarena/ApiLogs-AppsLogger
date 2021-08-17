@@ -5,29 +5,47 @@ import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ResponseApi } from '../models/response-api';
 import { Registro } from '../models/registro';
-
-
+import { Application } from '../models/application';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class LogsService {
-  apiurl = environment.API_URL;
+  apiurl = environment.API_URL_MICARTERA;
 
   constructor(
     private http: HttpClient
   ) { }
 
-  getData(): Observable<Registro[]> {
-    const url = `${this.apiurl}obtenerRegistros`
+  getDataSQLITE(app: Application): Observable<Registro[]> {
+    var url = '';
+
+    switch (app) {
+      case Application.MiCartera: {
+        url = `${this.apiurl}TestLogger/All/Logs`;
+        break;
+      }
+    }
+
     return this.http.get<ResponseApi<Registro[]>>(url)
       .pipe(
         map((res: any) => {
-          return res.data as any
+          return res.data as any;
         }),
         catchError(this.handleError<any>('Intentando obtener registros.'))
       );
   }
+
+
+
+
+
+
+
+
+
+
 
   /**
    * Handle Http operation that failed.
