@@ -44,6 +44,8 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
+              "baseHref": "/reportes/",
+              "deployUrl": "/reportes/",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -72,6 +74,8 @@
                   "with": "src/environments/environment.studio.ts"
                 }
               ],
+              "baseHref": "/reportes/",
+              "deployUrl": "/reportes/",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -100,6 +104,8 @@
                   "with": "src/environments/environment.test.ts"
                 }
               ],
+              "baseHref": "/reportes/",
+              "deployUrl": "/reportes/",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -128,6 +134,8 @@
                   "with": "src/environments/environment.uat.ts"
                 }
               ],
+              "baseHref": "/reportes/",
+              "deployUrl": "/reportes/",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -156,6 +164,8 @@
                   "with": "src/environments/environment.disenio.ts"
                 }
               ],
+              "baseHref": "/reportes/",
+              "deployUrl": "/reportes/",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,

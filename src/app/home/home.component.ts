@@ -93,8 +93,14 @@ export class HomeComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  public openModal(excepción: string) {
-    this.modalService.openModal('Excepción', excepción);
+  public isVisible(exception: string){
+    if(exception == ''|| exception == 'System.Exception'){
+      return false;
+    }return true;
+  }
+
+  public openModal(exception: string) {
+    this.modalService.openModal('Excepcion', exception);
   }
 
   public doFilter(value: string) {
