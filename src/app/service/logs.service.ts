@@ -23,7 +23,7 @@ export class LogsService {
 
     switch (app) {
       case Application.MiCartera: {
-        url = `${this.apiurl}TestLogger/All/Logs`;
+        url = `${this.apiurl}Logger?page=1&maxRows=50`;
         break;
       }
     }

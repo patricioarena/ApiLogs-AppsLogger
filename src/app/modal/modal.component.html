@@ -5,8 +5,15 @@
   </div>
 
   <div class="modal-body fix">
-    <div>{{data}}</div>
+    <div>{{data.requestHeaders}}</div>
+    <hr>
+    <div>{{data.requestBody}}</div>
+    <hr>
+    <div>{{data.frontendException}}</div>
+    <hr>
+    <div>{{data.backendResponse}}</div>
   </div>
+
 
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark ext" (click)="modalRef.hide()">Close</button>
