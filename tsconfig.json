@@ -26,5 +26,8 @@
     ],
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "paths": {
+      "tslib" : ["path/to/node_modules/tslib/tslib.d.ts"]
+    }
   }
 }

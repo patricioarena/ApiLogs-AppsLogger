@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   public title: String | undefined;
   public isEnabledBtn = false;
   public isEnabledFullTable = false;
-  public displayedColumns = ['id', 'timestamp', 'level', 'renderedMessage', 'properties', 'exception'];
+  public displayedColumns = ['id', 'timestamp', 'username', 'requestMethod', 'urlRequestFrontend', 'urlRequestBackend', 'queryString', 'statusCode', 'aplicacion', 'backendResponse'];
   public displayedColumnsNivel = ['valor', 'level', 'descripcion'];
   public dataSource = new MatTableDataSource<Registro>();
   public dataDefaults = [
@@ -93,8 +93,14 @@ export class HomeComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  public openModal(excepción: string) {
-    this.modalService.openModal('Excepción', excepción);
+  public isVisible(exception: string){
+    if(exception == ''|| exception == 'System.Exception'){
+      return false;
+    }return true;
+  }
+
+  public openModal(exception: Registro) {
+    this.modalService.openModal('Excepcion', exception);
   }
 
   public doFilter(value: string) {
