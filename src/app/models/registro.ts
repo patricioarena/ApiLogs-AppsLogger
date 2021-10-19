@@ -1,18 +1,31 @@
 export class Registro{
   id: number;
   timestamp: string;
-  level: string;
-  exception: string;
-  renderedMessage: string;
-  properties: string;
+  username: string;
+  requestMethod: string;
+  urlRequestFrontend: string;
+  urlRequestBackend: string;
+  queryString: string;
+  requestHeaders: string;
+  requestBody: string;
+  frontendException: string;
+  backendResponse: string;
+  statusCode: number | null;
+  aplicacion: string;
 
   constructor(obj?: any) {
     this.id = obj && obj.id || 0;
     this.timestamp = obj && obj.timestamp || "";
-    this.level = obj && obj.level || "";
-    this.exception = obj && obj.exception || "";
-    this.renderedMessage = obj && obj.renderedMessage || "";
-    this.properties = obj && obj.properties || "";
+    this.username = obj && obj.username || "";
+    this.requestMethod = obj && obj.requestMethod || "";
+    this.urlRequestFrontend = obj && obj.urlRequestFrontend || "";
+    this.urlRequestBackend = obj && obj.urlRequestBackend || "";
+    this.queryString = obj && obj.queryString || "";
+    this.requestHeaders = obj && obj.requestHeaders || "";
+    this.requestBody = obj && obj.requestBody || "";
+    this.frontendException = obj && obj.frontendException || "";
+    this.backendResponse = obj && obj.backendResponse || "";
+    this.statusCode = obj && obj.statusCode || null;
+    this.aplicacion = obj && obj.aplicacion || "";
   }
-
 }

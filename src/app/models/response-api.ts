@@ -6,6 +6,7 @@ export class ResponseApi<T> {
   public idJuicio: number;
   public developerMessage: string;
   public errorCode: number;
+  public exception: string;
 
   constructor(obj?: any) {
     this.ok = obj && obj.ok || 0;
@@ -15,6 +16,7 @@ export class ResponseApi<T> {
     this.idJuicio = obj && obj.idJuicio || 0;
     this.developerMessage = obj && obj.developerMessage || "";
     this.errorCode = obj && obj.errorCode || 0;
+    this.exception = obj && obj.exception || "";
   }
 
 }
