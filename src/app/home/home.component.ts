@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   public title: String | undefined;
   public isEnabledBtn = false;
   public isEnabledFullTable = false;
-  public displayedColumns = ['id', 'timestamp', 'level', 'renderedMessage', 'properties', 'exception'];
+  public displayedColumns = ['id', 'timestamp', 'username', 'requestMethod', 'urlRequestFrontend', 'urlRequestBackend', 'queryString', 'statusCode', 'aplicacion', 'backendResponse'];
   public displayedColumnsNivel = ['valor', 'level', 'descripcion'];
   public dataSource = new MatTableDataSource<Registro>();
   public dataDefaults = [
@@ -99,7 +99,7 @@ export class HomeComponent implements OnInit {
     }return true;
   }
 
-  public openModal(exception: string) {
+  public openModal(exception: Registro) {
     this.modalService.openModal('Excepcion', exception);
   }
 
