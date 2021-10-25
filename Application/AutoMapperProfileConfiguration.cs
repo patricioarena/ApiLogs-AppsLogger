@@ -13,6 +13,9 @@ namespace Application
             CreateMap<AppLogger, AppLoggerDTO>()
             .ReverseMap();
 
+            CreateMap<AppLogger, MoreInformationDTO>()
+            .ReverseMap();
+
             //CreateMap<Key, AssingnKeyDTO>()
             //.ForMember(destino => destino.clientId, options => options.MapFrom(origen => origen.clientId))
             //.ForMember(destino => destino.ipStart, options => options.MapFrom(origen => origen.ipStart))

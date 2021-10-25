@@ -458,5 +458,10 @@ namespace DataAccess.Helper
                 throw ex;
             }
         }
+
+        private class Response
+        {
+            public int? New_Identity { get; set; }
+        }
     }
 }

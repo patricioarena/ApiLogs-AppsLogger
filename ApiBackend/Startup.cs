@@ -47,7 +47,6 @@ namespace ApiBackend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //string ConnectionString = Configuration.GetConnectionString("SQLServer");
             string SQLServerLoggerConnectionStrings = Configuration.GetSection("SQLServerLogger").GetSection("ConnectionStrings").Value;
 
             services.AddControllers();
@@ -59,8 +58,6 @@ namespace ApiBackend
 
             services.AddScoped<IServiceLog, ServiceLog>();
             services.AddScoped<IAbstractServiceFactory, ConcreteServiceFactory>();
-
-            //services.AddDbContext<DbContext>(options => options.UseSqlServer(Configuration.GetConnectionString(ConnectionString)));
 
             MapperConfiguration mapperConfiguration = new AutoMapper.MapperConfiguration(config =>
             {
@@ -129,10 +126,10 @@ namespace ApiBackend
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+
+#if DEBUG
+            app.UseDeveloperExceptionPage();
+#endif
 
             var swaggerUrl = Configuration.GetSection("SwaggerOptions:UIEndpoint").Value;
             app.UseSwagger();

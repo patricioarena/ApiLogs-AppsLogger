@@ -24,32 +24,23 @@ namespace Application.Services
             _dbManager = dbManager;
         }
 
-        public List<AppLoggerDTO> GetLogs()
+        public List<MoreInformationDTO> GetMoreInformation(List<DbParameter> parameters)
+        {
+            var list = _dbManager.ExecuteList<AppLogger>("dbo.GetMoreInformation", parameters);
+           
+            List<MoreInformationDTO> listDTO = _Service.Mapper().Map<List<AppLogger>, List<MoreInformationDTO>>(list);
+
+            return listDTO;
+        }
+
+        public List<AppLoggerDTO> GetPartialLogs(List<DbParameter> parameters)
         {
 
-            //exec Logger.dbo.FilterLogs
-            //    @username = 'par',
-            //    @startDate = '2021/07/01',
-            //    @endDate = '2021/12/29',
-            //    @pageSize = 5,
-            //    @page = 1,
-            //    @appname = ''
+            var list = _dbManager.ExecuteList<AppLogger>("dbo.GetPartialLogs", parameters);
 
-            List<DbParameter> parameters = new List<DbParameter>();
+            List<AppLoggerDTO> listDTO = _Service.Mapper().Map<List<AppLogger>, List<AppLoggerDTO>>(list);
 
-            string username = "par";
-            int pageSize = 10;
-            int page = 1;
-
-            parameters.Add(new DbParameter("username", System.Data.ParameterDirection.Input, username));
-            parameters.Add(new DbParameter("pageSize", System.Data.ParameterDirection.Input, pageSize));
-            parameters.Add(new DbParameter("page", System.Data.ParameterDirection.Input, page));
-
-            var list = _dbManager.ExecuteList<AppLogger>("dbo.FilterLogs", parameters);
-
-            List<AppLoggerDTO> listLogDTO = _Service.Mapper().Map<List<AppLogger>, List<AppLoggerDTO>>(list);
-
-            return listLogDTO;
+            return listDTO;
         }
 
 
