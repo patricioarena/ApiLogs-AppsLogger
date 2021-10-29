@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  API_URL_MICARTERA: 'https://localhost:44372/api/',
+  API_LOGGER: 'http://localhost/',
   production: false,
   debug: false,
   uat: false,

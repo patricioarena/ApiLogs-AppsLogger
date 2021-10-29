@@ -5,13 +5,25 @@
   </div>
 
   <div class="modal-body fix">
-    <div>{{data.requestHeaders}}</div>
+    <div>
+      <strong>Query String:</strong> {{data.queryString}}
+    </div>
     <hr>
-    <div>{{data.requestBody}}</div>
+    <div>
+      <strong>Request Headers:</strong> {{data.requestHeaders}}
+    </div>
     <hr>
-    <div>{{data.frontendException}}</div>
+    <div>
+      <strong>Request Body:</strong> {{data.requestBody}}
+    </div>
     <hr>
-    <div>{{data.backendResponse}}</div>
+    <div>
+      <strong>Frontend Exception:</strong> {{data.frontendException}}
+    </div>
+    <hr>
+    <div>
+      <strong>Backend Response:</strong> {{data.backendResponse}}
+    </div>
   </div>
 
 

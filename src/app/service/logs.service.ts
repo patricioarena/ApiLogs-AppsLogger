@@ -6,24 +6,41 @@ import { environment } from 'src/environments/environment';
 import { ResponseApi } from '../models/response-api';
 import { Registro } from '../models/registro';
 import { Application } from '../models/application';
+import { RegistroDetalle } from '../models/registroDetalle';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class LogsService {
-  apiurl = environment.API_URL_MICARTERA;
+  apiurl = environment.API_LOGGER;
 
   constructor(
     private http: HttpClient
   ) { }
 
-  getDataSQLITE(app: Application): Observable<Registro[]> {
+  getData(enumIndex: Number): Observable<Registro[]> {
     var url = '';
 
-    switch (app) {
+    switch (enumIndex) {
+      case 0: {
+        url = `${this.apiurl}Logs?appname=`;
+        break;
+      }
       case Application.MiCartera: {
-        url = `${this.apiurl}Logger?page=1&maxRows=50`;
+        url = `${this.apiurl}Logs?appname=abogados`;
+        break;
+      }
+      case Application.Distribucion: {
+        url = `${this.apiurl}Logs?appname=distribucion`;
+        break;
+      }
+      case Application.Registro_De_Juicios: {
+        url = `${this.apiurl}Logs?appname=registro`;
+        break;
+      }
+      case Application.Calendario: {
+        url = `${this.apiurl}Logs?appname=calendario`;
         break;
       }
     }
@@ -39,7 +56,17 @@ export class LogsService {
 
 
 
+  getMoreInformation(id: Number): Observable<RegistroDetalle> {
+    var url = `${this.apiurl}Logs/MoreInformation/${id}`;
 
+    return this.http.get<ResponseApi<Registro>>(url)
+      .pipe(
+        map((res: any) => {
+          return res.data[0] as any;
+        }),
+        catchError(this.handleError<any>('Intentando obtener registro.'))
+      );
+  }
 
 
 

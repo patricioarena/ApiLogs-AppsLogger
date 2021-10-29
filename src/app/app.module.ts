@@ -13,6 +13,7 @@ import { ModalModule } from "ngx-bootstrap/modal";
 import { ModalService } from './service/modal.service';
 import { LogsService } from './service/logs.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,13 +21,14 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     HomeComponent,
     FooterComponent,
-    ModalComponent
+    ModalComponent,
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     MaterialModule,
     ModalModule.forRoot()
   ],

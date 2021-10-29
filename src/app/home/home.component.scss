@@ -1,113 +1,98 @@
+.example-container {
+  position: relative;
+}
+
+.example-table-container {
+  position  : relative;
+  min-height: 400px;
+  max-height: 468px;
+  overflow  : auto;
+}
+
+table {
+  width: 100%;
+}
+
+
+
+.mat-cell,
+.mat-footer-cell {
+  font-size: 12px;
+}
+
+.mat-row:hover .mat-cell {
+  border-color    : currentColor;
+  background-color: #9daab17e;
+}
+
+.mat-column-id,
+.mat-column-username,
+.mat-column-timestamp,
+.mat-column-requestMethod,
+.mat-column-urlRequestBackend,
+.mat-column-urlRequestFrontend,
+.mat-column-queryString,
+.mat-column-statusCode,
+.mat-column-aplicacion,
+.mat-column-backendResponse {
+  padding: 5px;
+}
+
 .mat-column-id {
-  width: 3.5% !important;
-  border-right: 1px solid rgb(224 224 224);
-  text-align: justify;
+  border-right: 1px solid #b7c0c4;
 }
 
-.mat-column-timestamp {
-  width: 7% !important;
-  border-right: 1px solid rgb(224 224 224);
+.mat-column-statusCode,
+.mat-column-requestMethod {
   text-align: center;
-  padding: 5px;
 }
 
-.mat-column-level {
-  width: 5% !important;
-  border-right: 1px solid rgb(224 224 224);
-  text-align: center;
-  padding: 5px;
+td.mat-cell:first-of-type {
+  padding-left: 10px;
 }
 
-.mat-column-valor {
-  width: 5% !important;
-  border-right: 1px solid rgb(224 224 224);
-  text-align: center;
-  padding: 5px;
+th.mat-header-cell {
+  border-color    : #b7c0c4;
+  background-color: #9daab17e;
+  color           : #494a4b;
 }
 
-.mat-column-renderedMessage {
-  width: 20% !important;
-  border-right: 1px solid rgb(224 224 224);
-  text-align: center;
-  padding: 5px;
-}
 
-.mat-column-properties {
+.mat-column-urlRequestBackend,
+.mat-column-urlRequestFrontend {
   word-break: break-all;
-  text-align: justify;
-  border-right: 1px solid rgb(224 224 224);
-  padding: 5px;
-}
-
-.mat-column-exception {
-  border-bottom: 1px solid rgb(224 224 224);
-}
-
-.mat-button {
-  border: 0;
-  border-radius: .0rem;
-  margin-left: 20%;
-  border: 1px solid grey!important;
-}
-
-::ng-deep .mat-form-field-label{
-  font-size: medium !important;
-  color:#000 !important;
-}
-
-::ng-deep .mat-form-field-underline .mat-form-field-ripple{
-  background-color:#000 !important;
-}
-
-::ng-deep .mat-form-field-underline{
-  background-color: rgba(128, 128, 128, 0.631) !important;
-}
-
-tr.mat-header-row {
-  background-color:#888a8b8a!important;
-}
-
-.mat-header-cell, mat-cell{
-  color:#000!important;
-  font-size: small;
-}
-
-.mat-sort-header-arrow{
-  color:#000!important;
 }
 
 
-.Trace{
-  text-shadow: 1px 1px 2px black, 0 0 1em rgb(71, 71, 71), 0 0 0.2em black;
-  color:greenyellow!important;
+::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+  background-color: rgba(0, 0, 0, .1) !important;
 }
 
-.Debug{
-  text-shadow: 1px 1px 2px black, 0 0 1em rgb(71, 71, 71), 0 0 0.2em black;
-  color:violet!important;
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: #4285f4 !important;
+  /*inner circle color change*/
 }
 
-.Information{
-  text-shadow: 1px 1px 2px black, 0 0 1em rgb(71, 71, 71), 0 0 0.2em black;
-  color:skyblue!important;
+::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: #4285f4 !important;
+  /*outer ring color change*/
 }
 
-.Warning{
-  text-shadow: 1px 1px 2px black, 0 0 1em rgb(71, 71, 71), 0 0 0.2em black;
-  color:yellow!important;
+
+.mat-flat-button {
+  color           : aliceblue;
+  background-color: #4285f4;
 }
 
-.Error{
-  text-shadow: 1px 1px 2px black, 0 0 1em rgb(71, 71, 71), 0 0 0.2em black;
-  color:red!important;
+
+
+
+
+.uppercase {
+  text-transform: uppercase;
 }
 
-.Fatal{
-  text-shadow: 1px 1px 2px black, 0 0 1em rgb(71, 71, 71), 0 0 0.2em black;
-  color:orangered!important;
-}
-
-.None{
-  text-shadow: 1px 1px 2px black, 0 0 1em rgb(71, 71, 71), 0 0 0.2em black;
-  color:white!important;
+.my-mat-style {
+  margin-left    : 5px;
+  margin-right   : 5px;
 }
