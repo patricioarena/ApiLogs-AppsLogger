@@ -1,6 +1,6 @@
 {
   "/api/*": {
-    "target": "http://appsdev.fepba.gov.ar/abogados/",
+    "target": "http://appsdev.fepba.gov.ar/apilogs/",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "reportes": {
+    "appslogger": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,17 +20,18 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/reportes",
+            "outputPath": "dist/appslogger",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              { "glob": "web.config", "input": "./", "output": "./" }
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": [],
@@ -49,15 +50,16 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "baseHref": "/reportes/",
-              "deployUrl": "/reportes/",
+              "baseHref": "/appslogger/",
+              "deployUrl": "/appslogger/",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
+              "namedChunks": true,
+              "aot": false,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true,
+              "buildOptimizer": false,
               "budgets": [
                 {
                   "type": "initial",
@@ -78,15 +80,14 @@
                   "with": "src/environments/environment.studio.ts"
                 }
               ],
-              "baseHref": "/reportes/",
-              "deployUrl": "/reportes/",
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
+              "optimization": false,
+              "outputHashing": "none",
+              "sourceMap": true,
+              "namedChunks": true,
+              "aot": false,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true,
+              "buildOptimizer": false,
               "budgets": [
                 {
                   "type": "initial",
@@ -107,15 +108,16 @@
                   "with": "src/environments/environment.test.ts"
                 }
               ],
-              "baseHref": "/reportes/",
-              "deployUrl": "/reportes/",
+              "baseHref": "/appslogger/",
+              "deployUrl": "/appslogger/",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
+              "namedChunks": true,
+              "aot": false,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true,
+              "buildOptimizer": false,
               "budgets": [
                 {
                   "type": "initial",
@@ -136,15 +138,16 @@
                   "with": "src/environments/environment.uat.ts"
                 }
               ],
-              "baseHref": "/reportes/",
-              "deployUrl": "/reportes/",
+              "baseHref": "/appslogger/",
+              "deployUrl": "/appslogger/",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
+              "namedChunks": true,
+              "aot": false,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true,
+              "buildOptimizer": false,
               "budgets": [
                 {
                   "type": "initial",
@@ -165,15 +168,14 @@
                   "with": "src/environments/environment.disenio.ts"
                 }
               ],
-              "baseHref": "/reportes/",
-              "deployUrl": "/reportes/",
               "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
+              "outputHashing": "none",
+              "sourceMap": true,
+              "namedChunks": true,
+              "aot": false,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
+              "vendorChunk": true,
+              "buildOptimizer": false,
               "budgets": [
                 {
                   "type": "initial",
@@ -193,21 +195,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "reportes:build"
+            "browserTarget": "appslogger:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "reportes:build:production"
+              "browserTarget": "appslogger:build:production"
             },
             "studio": {
-              "browserTarget": "reportes:build:studio",
+              "browserTarget": "appslogger:build:studio",
               "proxyConfig": "src/proxy.conf.studio.json"
             },
             "test": {
-              "browserTarget": "reportes:build:test"
+              "browserTarget": "appslogger:build:test"
             },
             "disenio": {
-              "browserTarget": "reportes:build:disenio",
+              "browserTarget": "appslogger:build:disenio",
               "proxyConfig": "src/proxy.conf.disenio.json"
             }
           }
@@ -215,7 +217,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "reportes:build"
+            "browserTarget": "appslogger:build"
           }
         },
         "test": {
@@ -230,7 +232,7 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -253,16 +255,17 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "reportes:serve"
+            "devServerTarget": "appslogger:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "reportes:serve:production"
+              "devServerTarget": "appslogger:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "reportes"
+  "defaultProject": "appslogger"
 }
+
