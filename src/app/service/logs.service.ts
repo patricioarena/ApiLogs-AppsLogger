@@ -54,8 +54,6 @@ export class LogsService {
       );
   }
 
-
-
   getMoreInformation(id: Number): Observable<RegistroDetalle> {
     var url = `${this.apiurl}Logs/MoreInformation/${id}`;
 

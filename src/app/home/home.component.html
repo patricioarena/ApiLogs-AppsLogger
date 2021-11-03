@@ -40,12 +40,13 @@
 
       &nbsp;&nbsp;
 
-      <mat-radio-group aria-label="Select an option">
-        <mat-radio-button class="my-mat-style"
-        [value]="item.key"  *ngFor="let item of application | keyvalue "
-        (change)="radioChange(item.key)" >{{ item.value.replaceAll('_', ' ') }}</mat-radio-button>
-      </mat-radio-group>
-
+      <mat-form-field appearance="fill">
+         <mat-select>
+          <mat-option
+          [value]="item.key"  *ngFor="let item of application | keyvalue "
+          (change)="radioChange(item.key)" >{{ item.value.replaceAll('_', ' ') }}</mat-option>
+        </mat-select>
+      </mat-form-field>
       <button mat-flat-button class="mat-flat-button" (click)="advancedSearch()"> Advanced Search </button>
 
     </div>
