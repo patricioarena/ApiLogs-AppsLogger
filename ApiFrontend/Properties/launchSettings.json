@@ -15,7 +15,6 @@
   "profiles": {
     "IIS Local": {
       "commandName": "IIS",
-      "launchBrowser": true,
       "launchUrl": "http://localhost/apilogs/ApiFrontend/swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "$(configuracion)"

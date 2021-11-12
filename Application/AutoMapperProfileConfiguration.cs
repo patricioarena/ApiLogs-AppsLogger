@@ -10,11 +10,20 @@ namespace Application
     {
         public AutoMapperProfileConfiguration(string profileName) : base(profileName)
         {
-            CreateMap<AppLogger, AppLoggerDTO>()
+            CreateMap<AddRequestResposeLog, AddRequestResposeLogPartialDTO>()
             .ReverseMap();
 
-            CreateMap<AppLogger, MoreInformationDTO>()
+            CreateMap<AddRequestResposeLog, MoreInformationDTO>()
             .ReverseMap();
+
+            CreateMap<AppLoggerConfiguration, AppLoggerConfigurationDTO>()
+           .ReverseMap();
+
+
+            CreateMap<AppLoggerStadistic, AppLoggerStadisticDTO>()
+                       .ReverseMap();
+
+
 
             //CreateMap<Key, AssingnKeyDTO>()
             //.ForMember(destino => destino.clientId, options => options.MapFrom(origen => origen.clientId))

@@ -1,4 +1,5 @@
 ﻿using DataAccess.Helper;
+using Domain.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -30,7 +31,7 @@ namespace ApiFrontend.Controllers
             if (username != null)
                 url = url + "&username=" + username;
 
-            if (username != null)
+            if (appname != null)
                 url = url + "&appname=" + appname;
 
             if (startDate != null)
@@ -53,6 +54,52 @@ namespace ApiFrontend.Controllers
         {
             var url = "api/Logs/MoreInformation/" + id;
             return _httpHelper.restCallGet(url, this);
+        }
+
+        [HttpGet("GetConfigurations")]
+        public IActionResult GetConfigurations(int? id = null)
+        {
+ 
+            var url = "api/Logs/GetConfigurations?";
+            if (id != null)
+                url = url + "&id=" + id;
+
+            return _httpHelper.restCallGet(url, this);
+        }
+
+        [HttpGet("GetStadistics")]
+        public IActionResult GetStadistics()
+        {
+            var url = "api/Logs/GetStadistics";
+            return _httpHelper.restCallGet(url, this);
+        }
+
+        [HttpPost("UpdateAppConfiguration/{id}")]
+        public IActionResult SetAppConfiguration(int id, bool? activeLogger = null, bool? include200 = null)
+        {
+            var url = "api/Logs/UpdateAppConfiguration/" + id + "?";
+            
+            if (activeLogger != null)
+                url = url + "&activeLogger=" + activeLogger;
+            
+            if (include200 != null)
+                url = url + "&include200=" + include200;
+
+            return _httpHelper.restCallPost(url, null, this);
+        }
+
+        [HttpPost("AddAppConfiguration/appname/{appname}/activeLogger/{activeLogger}/include200/{include200}")]
+        public IActionResult SetAppConfiguration(string appname, bool activeLogger, bool include200)
+        {
+            var url = $"api/Logs/AddAppConfiguration/appname/{appname}/activeLogger/{activeLogger}/include200/{include200}";
+            return _httpHelper.restCallPost(url, null, this);
+        }
+
+        [HttpPost("AddRequestResposeLog")]
+        public IActionResult AddRequestResposeLog([FromBody] AddRequestResposeLogDTO model)
+        {
+            var url = $"api/Logs/AddAppConfiguration";
+            return _httpHelper.restCallPost(url, model, this);
         }
     }
 }
