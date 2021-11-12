@@ -19,31 +19,8 @@ export class LogsService {
     private http: HttpClient
   ) { }
 
-  getData(enumIndex: Number): Observable<Registro[]> {
-    var url = '';
-
-    switch (enumIndex) {
-      case 0: {
-        url = `${this.apiurl}Logs?appname=`;
-        break;
-      }
-      case Application.MiCartera: {
-        url = `${this.apiurl}Logs?appname=abogados`;
-        break;
-      }
-      case Application.Distribucion: {
-        url = `${this.apiurl}Logs?appname=distribucion`;
-        break;
-      }
-      case Application.Registro_De_Juicios: {
-        url = `${this.apiurl}Logs?appname=registro`;
-        break;
-      }
-      case Application.Calendario: {
-        url = `${this.apiurl}Logs?appname=calendario`;
-        break;
-      }
-    }
+  getData(enumIndex: number): Observable<Registro[]> {
+    var url = this.urlCreateByAllName(enumIndex);
 
     return this.http.get<ResponseApi<Registro[]>>(url)
       .pipe(
@@ -54,7 +31,7 @@ export class LogsService {
       );
   }
 
-  getMoreInformation(id: Number): Observable<RegistroDetalle> {
+  getMoreInformation(id: number): Observable<RegistroDetalle> {
     var url = `${this.apiurl}Logs/MoreInformation/${id}`;
 
     return this.http.get<ResponseApi<Registro>>(url)
@@ -68,6 +45,69 @@ export class LogsService {
 
 
 
+
+  // console.log(this.appName);
+  // console.log(this.username);
+  // console.log(this.range.value);
+  // console.log(this.range.value.start);
+  // console.log(this.range.value.end);
+
+  advancedSearch(
+    appKeyOfEnumApplication: number,
+    username: string,
+    startDate: string,
+    endDate: string
+  ): Observable<Registro[]> {
+
+    console.log(appKeyOfEnumApplication);
+    console.log(username);
+    console.log(startDate);
+    console.log(endDate);
+
+    var url = this.urlCreateByAllName(appKeyOfEnumApplication);
+
+    if (username !== null) {
+      url = url + `&username=${username}`
+    }
+
+    if (startDate !== null) {
+      url = url + `&startDate=${startDate}`
+    }
+
+    if (startDate !== null) {
+      url = url + `&endDate=${endDate}`
+    }
+
+    return this.http.get<ResponseApi<Registro[]>>(url)
+      .pipe(
+        map((res: any) => {
+          return res.data as any;
+        }),
+        catchError(this.handleError<any>('Intentando obtener registros.'))
+      );
+  }
+
+
+
+  private urlCreateByAllName(enumIndex: number): string {
+    switch (Number(enumIndex)) {
+      case 0: {
+        return `${this.apiurl}Logs?appname=`;
+      }
+      case Application.MiCartera: {
+        return `${this.apiurl}Logs?appname=abogados`;
+      }
+      case Application.Distribucion: {
+        return `${this.apiurl}Logs?appname=distribucion`;
+      }
+      case Application.Registro_De_Juicios: {
+        return `${this.apiurl}Logs?appname=registro`;
+      }
+      case Application.Calendario: {
+        return `${this.apiurl}Logs?appname=calendario`;
+      }
+    }
+  }
 
 
 
