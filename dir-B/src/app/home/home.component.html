@@ -1,0 +1,122 @@
+<!-- <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner> -->
+
+<!-- https://code-maze.com/angular-material-table/ -->
+<!-- https://stackoverflow.com/questions/47051485/angular-material-2-table-mat-row-click-event-also-called-with-button-click-in-ma -->
+
+<section class="ss-style-triangles">
+
+  <button  mat-flat-button class="mat-flat-button my-mat-style uppercase"
+      *ngFor="let item of application | keyvalue "
+      (click)="loadData(item.key)" >{{ item.value.replaceAll('_', ' ') }}</button>
+
+</section>
+
+<div id="fullTable" class="example-container">
+
+  <div [formGroup]="advancedSearchForm" class="container-fluid">
+      <div class="row" style="align-items: baseline; background-color: #edf1f382">
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Search username</mat-label>
+        <input matInput type="text" (keyup)="doFilter($any($event.target).value)" formControlName="username" placeholder="">
+      </mat-form-field>
+
+      &nbsp;&nbsp;
+
+      <mat-form-field appearance="fill">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate formControlName="start" placeholder="Start date">
+          <input matEndDate formControlName="end" placeholder="End date">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+
+        <mat-error *ngIf="advancedSearchForm.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+        <mat-error *ngIf="advancedSearchForm.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+      </mat-form-field>
+
+      &nbsp;&nbsp;
+
+      <mat-form-field appearance="fill">
+        <mat-label>Application</mat-label>
+         <mat-select formControlName="appname">
+          <mat-option [value]="item.key"  *ngFor="let item of application | keyvalue ">{{ item.value.replaceAll('_', ' ') }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-flat-button class="mat-flat-button" (click)="advancedSearch()"> Advanced Search </button>
+
+    </div>
+  </div>
+
+  <p>Selected range: {{advancedSearchForm.value | json}}</p>
+
+
+  <div class="example-table-container">
+
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <ng-container matColumnDef="id" sticky>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="timestamp">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha y Hora </th>
+        <td mat-cell *matCellDef="let element"> {{ splitString (element.timestamp) }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> username </th>
+        <td mat-cell *matCellDef="let element">{{element.username}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="requestMethod">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Request Method </th>
+        <td mat-cell *matCellDef="let element">{{element.requestMethod}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="urlRequestFrontend">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Url Request Frontend</th>
+        <td mat-cell *matCellDef="let element">{{element.urlRequestFrontend}} </td>
+        <!-- <td mat-cell *matCellDef="let element"> {{(element.renderedMessage.length > 50) ? ((element.renderedMessage).slice(0, 50) + '...') : element.renderedMessage}} </td> -->
+      </ng-container>
+
+      <ng-container matColumnDef="urlRequestBackend">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Url Request Backend </th>
+        <td mat-cell *matCellDef="let element"> {{element.urlRequestBackend}} </td>
+        <!-- <td mat-cell *matCellDef="let element"> {{(element.properties.length > 50) ? ((element.properties).slice(0, 50) + '...') : element.properties}} </td> -->
+      </ng-container>
+
+      <ng-container matColumnDef="statusCode">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status Code</th>
+        <td mat-cell *matCellDef="let element">{{element.statusCode}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="aplicacion">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Application </th>
+        <td mat-cell *matCellDef="let element">{{element.aplicacion}}</td>
+      </ng-container>
+
+      <!-- <button mat-button class="btn-outline-dark" (click)="openModal(element.exception)" *ngIf="(element.exception == '') ? false : true"> -->
+      <ng-container matColumnDef="backendResponse" stickyEnd>
+        <th mat-header-cell *matHeaderCellDef>View More</th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-button class="btn-outline-dark" (click)="openModal(element)" *ngIf="isVisible(element.backendResponse)">
+            <mat-icon>remove_red_eye</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+  </div>
+
+  <mat-paginator [pageSize]="25" [pageSizeOptions]="[10, 20, 30, 40, 50]"> </mat-paginator>
+
+</div>
