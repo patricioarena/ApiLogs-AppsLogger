@@ -1,5 +1,5 @@
 export const environment = {
-  API_URL_MICARTERA: '/api/',
+  API_LOGGER: '/api/',
   production: false,
   debug: true,
   uat: false,
