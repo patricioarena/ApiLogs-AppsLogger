@@ -1,0 +1,75 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+:root {
+  -btn-primary: #4285f4;
+  -btn-default: #2bbbad;
+  -btn-secondary: #a6c;
+  -btn-success: #00c851;
+  -btn-info: #33b5e5;
+  -btn-warning: #fb3;
+  -btn-danger: #ff3547;
+  -btn-grey: #8dacc5;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Roboto', "Helvetica Neue", sans-serif; }
+
+.null {
+  margin: 0;
+}
+
+.justifyCenter {
+  display: flex;
+  justify-content: center;
+}
+
+// .btn-Custom {
+//   padding: .80rem 2.14rem;
+//   font-size: .81rem;
+//   margin: .375rem;
+//   border: 0;
+//   border-radius: .0rem;
+//   cursor: pointer;
+//   text-transform: uppercase;
+//   white-space: normal;
+//   word-wrap: break-word;
+// }
+
+section {
+  position: relative;
+  background-color: rgba(155, 168, 174, 0.3);
+  padding-top:20px;
+  padding-bottom:20px;
+  margin-top:15px;
+  margin-bottom:20px;
+  text-align: center;
+}
+
+/* Common style for pseudo-elements */
+section::before,
+section::after {
+  position: absolute;
+  content: '';
+  pointer-events: none;
+}
+
+/* Triangles */
+.ss-style-triangles::before,
+.ss-style-triangles::after {
+  display: flex;
+  justify-content: space-between !important;
+
+  // left: 50%;
+  // width: 30px;
+  // height: 30px;
+  // -webkit-transform: translateX(-50%) rotate(45deg);
+  // transform: translateX(-50%) rotate(45deg);
+}
+
+.ss-style-triangles::before {
+  top: -15px;
+  background: #ecf0f5;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
