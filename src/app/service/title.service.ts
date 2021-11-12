@@ -9,7 +9,7 @@ import { Title } from '@angular/platform-browser';
   providedIn: 'root'
 })
 export class TitleService {
-  public APP_TITLE: String | undefined;
+  public APP_TITLE: string | undefined;
   SEPARATOR = ' > ';
 
   constructor(
@@ -23,7 +23,7 @@ export class TitleService {
     return text.charAt(0).toUpperCase() + text.slice(1);
   }
 
-  init(title: String) {
+  init(title: string) {
     this.APP_TITLE = title;
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),

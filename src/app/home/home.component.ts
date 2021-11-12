@@ -18,29 +18,28 @@ import { Application } from '../models/application';
 
 export class HomeComponent implements OnInit {
 
-  public title: String | undefined;
+  public title: string | undefined;
   public isEnabledBtn = false;
   public displayedColumns = ['id', 'timestamp', 'username', 'requestMethod', 'urlRequestFrontend', 'urlRequestBackend', 'statusCode', 'aplicacion', 'backendResponse'];
-  public displayedColumnsNivel = ['valor', 'level', 'descripcion'];
   public dataSource = new MatTableDataSource<Registro>();
   public application: Array<string> = Object.keys(Application).filter(key => isNaN(+key));
-  public appName: String;
-  public username: String;
-  public range = new FormGroup({
+  public advancedSearchForm = new FormGroup({
+    appname: new FormControl(),
+    username: new FormControl(),
     start: new FormControl(),
     end: new FormControl()
   });
 
-  @ViewChild(MatSort, {static: false})
+  @ViewChild(MatSort, { static: false })
   set sort(value: MatSort) {
-    if (this.dataSource){
+    if (this.dataSource) {
       this.dataSource.sort = value;
     }
   }
 
-  @ViewChild(MatPaginator, {static: false})
+  @ViewChild(MatPaginator, { static: false })
   set paginator(value: MatPaginator) {
-    if (this.dataSource){
+    if (this.dataSource) {
       this.dataSource.paginator = value;
     }
   }
@@ -54,6 +53,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.advancedSearchForm.get('appname').setValue(0)
     this.title = this.titleServive.APP_TITLE;
     this.loadData(Application.Todas);
   }
@@ -63,10 +63,10 @@ export class HomeComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  public isVisible(exception: string){
-    if(exception == ''|| exception == 'System.Exception'){
+  public isVisible(exception: string) {
+    if (exception == '' || exception == 'System.Exception') {
       return false;
-    }return true;
+    } return true;
   }
 
   public openModal(exception: Registro) {
@@ -84,32 +84,36 @@ export class HomeComponent implements OnInit {
     this.dataSource.filter = value.trim().toLocaleLowerCase();
   }
 
-  public loadData(enumIndex: Number) {
+  public loadData(enumIndex: number) {
     this.dataSource.filter = '';
-    this.logsService.getData(Number(enumIndex)).subscribe(data => {
-      this.dataSource = new MatTableDataSource<Registro> (data);
+    this.logsService.getData(enumIndex).subscribe(data => {
+      this.dataSource = new MatTableDataSource<Registro>(data);
       this.cdr.detectChanges();
     });
   }
 
-  public splitString(param:String) {
+  public splitString(param: string) {
     return param.replace("T", "\n")
   }
 
-  public radioChange(param){
-    this.appName = param;
-  }
+  public advancedSearch() {
+    let appname = this.advancedSearchForm.value.appname;
+    let username = this.advancedSearchForm.value.username;
+    let startDate = this.advancedSearchForm.value.start;
+    let endDate = this.advancedSearchForm.value.end;
 
-  public setParamSearch(param){
-    this.username = param;
-  }
+    console.log(appname);
+    console.log(username);
+    console.log(startDate);
+    console.log(endDate);
 
-  public advancedSearch(){
-    console.log(this.appName);
-    console.log(this.username);
-    console.log(this.range.value);
-    console.log(this.range.value.start);
-    console.log(this.range.value.end);
+
+    this.logsService.advancedSearch(appname, username, startDate, endDate)
+      .subscribe(data => {
+        this.dataSource = new MatTableDataSource<Registro>(data);
+        this.cdr.detectChanges();
+      });
+
 
   }
 

@@ -13,11 +13,11 @@ export class ModalService {
 
   constructor(
     private modalService: BsModalService
-    ) { }
+  ) { }
 
-  openModal(title: String, data: RegistroDetalle) {
+  openModal(title: string, data: RegistroDetalle) {
 
-     this.modalRef = this.modalService.show(ModalComponent,  {
+    this.modalRef = this.modalService.show(ModalComponent, {
       class: 'modal-lg',
       initialState: {
         title: title,
