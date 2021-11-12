@@ -9,7 +9,7 @@ import { Registro } from '../models/registro';
 })
 export class ModalComponent implements OnInit {
 
-  title: String | undefined;
+  title: string | undefined;
   data: Registro | undefined;
 
   constructor(

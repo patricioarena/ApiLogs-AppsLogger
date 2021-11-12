@@ -8,7 +8,7 @@ import { TitleService } from '../service/title.service';
 })
 export class HeaderComponent implements OnInit {
 
-  title: String | undefined;
+  title: string | undefined;
 
   constructor(
     private titleServive: TitleService
