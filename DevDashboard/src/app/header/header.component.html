@@ -15,3 +15,10 @@
         </div>
       </div>
 </header>
+
+<section class="ss-style-triangles">
+
+      <button  mat-flat-button class="mat-flat-button my-mat-style uppercase" *ngFor="let item of urls "
+      (click)="goTo(item)" >{{item.replaceAll('/', '') }}</button>
+
+</section>

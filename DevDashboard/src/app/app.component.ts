@@ -7,7 +7,7 @@ import { TitleService } from './service/title.service';
 })
 export class AppComponent {
   public constructor(private titleService: TitleService) {
-    this.titleService.init('AppsLogger');
+    this.titleService.init('Developer Dashboard');
   }
 
 }

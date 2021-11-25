@@ -5,26 +5,15 @@
 <!-- https://code-maze.com/angular-material-table/ -->
 <!-- https://stackoverflow.com/questions/47051485/angular-material-2-table-mat-row-click-event-also-called-with-button-click-in-ma -->
 
-<section class="ss-style-triangles">
-
-  <button  mat-flat-button class="mat-flat-button my-mat-style uppercase"
-      *ngFor="let item of application | keyvalue "
-      (click)="loadData(item.key)" >{{ item.value.replaceAll('_', ' ') }}</button>
-
-</section>
-
 <div id="fullTable" class="example-container">
 
   <div [formGroup]="advancedSearchForm" class="container-fluid">
       <div class="row" style="align-items: baseline; background-color: #edf1f382">
-
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Search username</mat-label>
         <input matInput type="text" (keyup)="doFilter($any($event.target).value)" formControlName="username" placeholder="">
       </mat-form-field>
-
       &nbsp;&nbsp;
-
       <mat-form-field appearance="fill">
         <mat-label>Enter a date range</mat-label>
         <mat-date-range-input [rangePicker]="picker">
@@ -33,25 +22,24 @@
         </mat-date-range-input>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>
-
         <mat-error *ngIf="advancedSearchForm.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
         <mat-error *ngIf="advancedSearchForm.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
       </mat-form-field>
-
       &nbsp;&nbsp;
-
       <mat-form-field appearance="fill">
         <mat-label>Application</mat-label>
          <mat-select formControlName="appname">
           <mat-option [value]="item.key"  *ngFor="let item of application | keyvalue ">{{ item.value.replaceAll('_', ' ') }}</mat-option>
         </mat-select>
       </mat-form-field>
-      <button mat-flat-button class="mat-flat-button" (click)="advancedSearch()"> Advanced Search </button>
-
+      &nbsp;&nbsp;
+      <button id="advancedSearch" mat-flat-button class="mat-flat-button" (click)="advancedSearch()"> Advanced Search
+        <mat-icon>search</mat-icon>
+      </button>
     </div>
   </div>
 
-  <p>Selected range: {{advancedSearchForm.value | json}}</p>
+  <!-- <p>Selected range: {{advancedSearchForm.value | json}}</p> -->
 
 
   <div class="example-table-container">

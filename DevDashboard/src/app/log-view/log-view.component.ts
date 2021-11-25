@@ -9,14 +9,15 @@ import { Registro } from '../models/registro';
 import { ModalService } from '../service/modal.service';
 import { LogsService } from '../service/logs.service';
 import { Application } from '../models/application';
+import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-log-view',
+  templateUrl: './log-view.component.html',
+  styleUrls: ['./log-view.component.scss']
 })
 
-export class HomeComponent implements OnInit {
+export class LogViewComponent implements OnInit {
 
   public title: string | undefined;
   public isEnabledBtn = false;
@@ -49,7 +50,8 @@ export class HomeComponent implements OnInit {
     private titleServive: TitleService,
     private modalService: ModalService,
     private logsService: LogsService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private  datepipe: DatePipe
   ) { }
 
   ngOnInit() {
@@ -99,8 +101,11 @@ export class HomeComponent implements OnInit {
   public advancedSearch() {
     let appname = this.advancedSearchForm.value.appname;
     let username = this.advancedSearchForm.value.username;
-    let startDate = this.advancedSearchForm.value.start;
-    let endDate = this.advancedSearchForm.value.end;
+    let startDateAux = this.advancedSearchForm.value.start;
+    let endDateAux = this.advancedSearchForm.value.end;
+
+    let startDate = this.datepipe.transform(startDateAux, 'yyyy/MM/dd');
+    let endDate =this.datepipe.transform(endDateAux, 'yyyy/MM/dd');
 
     console.log(appname);
     console.log(username);
